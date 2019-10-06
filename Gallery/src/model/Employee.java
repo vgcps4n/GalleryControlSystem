@@ -1,23 +1,25 @@
 package model;
 
+import java.util.List;
 import java.util.UUID;
 
-public class Member implements User {
+public class Employee implements User {
 	String ID;
 	Name name;
 	Auth auth;
 	int phone;
-	Member() {
+	List<Content> contents;
+	Employee() {
 		ID = UUID.randomUUID().toString();
 		name = new Name();
 		auth = new Auth();
 	}
-	Member(String username, String password) {
+	Employee(String username, String password) {
 		ID = UUID.randomUUID().toString();
 		name = new Name();
 		auth = new Auth(username, password);
 	}
-	Member(String lName, String fName, String username, String password, int phone) {
+	Employee(String lName, String fName, String username, String password, int phone) {
 		ID = UUID.randomUUID().toString();
 		name = new Name(lName, fName);
 		auth = new Auth(username, password);
@@ -32,5 +34,4 @@ public class Member implements User {
 	public String getPassword() {
 		return auth.getPassword();
 	}
-	
 }
