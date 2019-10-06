@@ -1,7 +1,7 @@
 package model;
 
 public class Auth {
-	String user, pass;
+	private String user, pass;
 	Auth() {
 		user = "";
 		pass = "";

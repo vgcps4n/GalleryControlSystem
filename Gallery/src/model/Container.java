@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Container {
-	protected List<User> users = new ArrayList<>();
+	protected static final List<User> users = new ArrayList<>();
 	
 	public boolean authenticate(String username, String password) {
 		for(int i=0; i<users.size(); i++) {

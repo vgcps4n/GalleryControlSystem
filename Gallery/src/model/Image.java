@@ -4,6 +4,7 @@ import java.util.UUID;
 
 public class Image implements Content {
 	String ID, name, author, path;
+	int downloaded, viewed;
 	Image() {
 		ID = UUID.randomUUID().toString();
 		name = "";

@@ -1,6 +1,6 @@
 package model;
 
 public interface User {
-	String getUsername();
-	String getPassword();
+	public String getUsername();
+	public String getPassword();
 }

@@ -1,7 +1,7 @@
 package model;
 
 public class Name {
-	String last, first;
+	private String last, first;
 	Name() {
 		last = "";
 		first = "";

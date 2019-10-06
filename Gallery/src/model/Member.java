@@ -23,6 +23,27 @@ public class Member implements User {
 		auth = new Auth(username, password);
 		this.phone = phone;
 	}
+	
+	public String getID() {
+		return ID;
+	}
+	
+	public void setID(String ID) {
+		this.ID = ID;
+	}
+	
+	public int getPhone() {
+		return phone;
+	}
+	
+	public void setPhone(int phone) {
+		this.phone = phone;
+	}
+	
+	public Name getName() {
+		return name;
+	}
+	
 	@Override
 	public String getUsername() {
 		return auth.getUsername();
