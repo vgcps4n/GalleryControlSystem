@@ -3,8 +3,8 @@ package model;
 import java.util.UUID;
 
 public class Image implements Content {
-	String ID, name, author, path;
-	int downloaded, viewed;
+	String ID, name, author, path, def;
+//	int liked, viewed;
 	Image() {
 		ID = UUID.randomUUID().toString();
 		name = "";

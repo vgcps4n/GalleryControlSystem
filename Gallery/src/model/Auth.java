@@ -1,25 +1,33 @@
 package model;
 
 public class Auth {
-	private String user, pass;
+	private String username, password;
+	User user;
 	Auth() {
-		user = "";
-		pass = "";
+		username = "";
+		password = "";
 	}
-	Auth(String user, String pass) {
+	Auth(String username, String password, User user) {
+		this.username = username;
+		this.password = password;
 		this.user = user;
-		this.pass = pass;
 	}
 	public String getUsername() {
-		return user;
+		return username;
 	}
-	public void setUsername(String user) {
-		this.user = user;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getPassword() {
-		return pass;
+		return password;
 	}
-	public void setPassword(String pass) {
-		this.pass = pass;
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
 	}
 }

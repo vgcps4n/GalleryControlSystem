@@ -15,12 +15,12 @@ public class Member implements User {
 	Member(String username, String password) {
 		ID = UUID.randomUUID().toString();
 		name = new Name();
-		auth = new Auth(username, password);
+		auth = new Auth(username, password, this);
 	}
 	Member(String lName, String fName, String username, String password, int phone) {
 		ID = UUID.randomUUID().toString();
 		name = new Name(lName, fName);
-		auth = new Auth(username, password);
+		auth = new Auth(username, password, this);
 		this.phone = phone;
 	}
 	

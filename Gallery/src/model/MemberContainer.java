@@ -16,6 +16,7 @@ public class MemberContainer extends Container {
 		users.add(member);
 		return member;
 	}
+	
 	@Override
 	public List<User> readUsers() {
 		return users;
@@ -23,12 +24,11 @@ public class MemberContainer extends Container {
 
 	@Override
 	public boolean deleteUser(String username) {
-		for(int i=0; i<users.size(); i++) {
-			if(users.get(i).getUsername().equals(username)) {
-				users.remove(i);
+		for(User element: users)
+			if(element.getUsername().equals(username)) {
+				users.remove(element);
 				return true;
 			}
-		}
 		return false;
 	}
 
