@@ -8,14 +8,13 @@ public abstract class Container {
 	
 	public boolean authenticate(String username, String password) {
 		for(User element: users)
-			if(element.getUsername().equals(username))
-				if(element.getPassword().equals(password))
+			if(element.getAuth().getUsername().equals(username))
+				if(element.getAuth().getPassword().equals(password))
 					return true;
 		return false;
 	}
 	
 	abstract public User createUser(String username, String password);
 	abstract public List<User> readUsers();
-	//abstract public boolean updateUser(String username, String password);
 	abstract public boolean deleteUser(String username);
 }

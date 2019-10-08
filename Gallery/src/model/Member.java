@@ -3,7 +3,7 @@ package model;
 import java.util.UUID;
 
 public class Member implements User {
-	String ID;
+	String ID, address;
 	Name name;
 	Auth auth;
 	int phone;
@@ -17,11 +17,12 @@ public class Member implements User {
 		name = new Name();
 		auth = new Auth(username, password, this);
 	}
-	Member(String lName, String fName, String username, String password, int phone) {
+	Member(String lName, String fName, String username, String password, int phone, String address) {
 		ID = UUID.randomUUID().toString();
 		name = new Name(lName, fName);
 		auth = new Auth(username, password, this);
 		this.phone = phone;
+		this.address = address;
 	}
 	
 	public String getID() {
@@ -45,13 +46,8 @@ public class Member implements User {
 	}
 	
 	@Override
-	public String getUsername() {
-		return auth.getUsername();
-	}
-
-	@Override
-	public String getPassword() {
-		return auth.getPassword();
+	public Auth getAuth() {
+		return auth;
 	}
 	
 }

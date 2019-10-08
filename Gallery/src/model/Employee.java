@@ -9,25 +9,25 @@ public class Employee implements User {
 	private Name name;
 	private Auth auth;
 	private int phone;
-	private List<Content> contents;
+	private List<Image> images;
 	Employee() {
 		ID = UUID.randomUUID().toString();
 		name = new Name();
 		auth = new Auth();
-		contents = new ArrayList<>();
+		images = new ArrayList<>();
 	}
 	Employee(String username, String password) {
 		ID = UUID.randomUUID().toString();
 		name = new Name();
 		auth = new Auth(username, password, this);
-		contents = new ArrayList<>();
+		images = new ArrayList<>();
 	}
 	Employee(String lName, String fName, String username, String password, int phone) {
 		ID = UUID.randomUUID().toString();
 		name = new Name(lName, fName);
 		auth = new Auth(username, password, this);
 		this.phone = phone;
-		contents = new ArrayList<>();
+		images = new ArrayList<>();
 	}
 	
 	public String getID() {
@@ -52,19 +52,11 @@ public class Employee implements User {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-	public List<Content> getContents() {
-		return contents;
-	}
-	public void setContents(List<Content> contents) {
-		this.contents = contents;
+	public List<Image> getImages() {
+		return images;
 	}
 	@Override
-	public String getUsername() {
-		return auth.getUsername();
-	}
-
-	@Override
-	public String getPassword() {
-		return auth.getPassword();
+	public Auth getAuth() {
+		return auth;
 	}
 }

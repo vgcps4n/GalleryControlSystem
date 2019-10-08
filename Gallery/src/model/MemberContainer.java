@@ -4,8 +4,8 @@ import java.util.List;
 
 public class MemberContainer extends Container {
 	
-	public User createUser(String lName, String fName, String username, String password, int phone) {
-		Member member = new Member(lName, fName, username, password, phone);
+	public User createUser(String lName, String fName, String username, String password, int phone, String address) {
+		Member member = new Member(lName, fName, username, password, phone, address);
 		users.add(member);
 		return member;
 	}
@@ -25,7 +25,7 @@ public class MemberContainer extends Container {
 	@Override
 	public boolean deleteUser(String username) {
 		for(User element: users)
-			if(element.getUsername().equals(username)) {
+			if(element.getAuth().getUsername().equals(username)) {
 				users.remove(element);
 				return true;
 			}
