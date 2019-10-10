@@ -3,9 +3,7 @@ module gallery {
 	requires javafx.fxml;
 	requires transitive javafx.graphics;
 	requires java.sql;
-	
-//	opens view to javafx.fxml;
-//	exports view;
+	requires com.jfoenix;
 	
 	opens controller to javafx.fxml;
 	exports controller;

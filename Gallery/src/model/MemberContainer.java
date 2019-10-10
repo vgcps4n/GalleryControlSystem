@@ -1,6 +1,6 @@
 package model;
 
-import java.util.List;
+import javafx.collections.ObservableList;
 
 public class MemberContainer extends Container {
 	
@@ -18,18 +18,8 @@ public class MemberContainer extends Container {
 	}
 	
 	@Override
-	public List<User> readUsers() {
+	public ObservableList<User> getUsers() {
 		return users;
-	}
-
-	@Override
-	public boolean deleteUser(String username) {
-		for(User element: users)
-			if(element.getAuth().getUsername().equals(username)) {
-				users.remove(element);
-				return true;
-			}
-		return false;
 	}
 
 }

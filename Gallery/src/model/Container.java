@@ -1,10 +1,10 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public abstract class Container {
-	protected static final List<User> users = new ArrayList<>();
+	protected static final ObservableList<User> users = FXCollections.observableArrayList();
 	
 	public boolean authenticate(String username, String password) {
 		for(User element: users)
@@ -15,6 +15,5 @@ public abstract class Container {
 	}
 	
 	abstract public User createUser(String username, String password);
-	abstract public List<User> readUsers();
-	abstract public boolean deleteUser(String username);
+	abstract public ObservableList<User> getUsers();
 }
