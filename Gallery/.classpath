@@ -9,6 +9,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX12">
 		<attributes>
 			<attribute name="module" value="true"/>
+			<attribute name="add-exports" value="javafx.controls/javafx.scene.control.skin=gallery"/>
+			<attribute name="add-opens" value="javafx.controls/com.sun.javafx.scene.control.skin=gallery"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/jfoenix">

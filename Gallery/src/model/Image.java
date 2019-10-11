@@ -6,16 +6,6 @@ public class Image {
 	String ID, name, author, path, info;
 	int liked, bought;
 	
-	Image() {
-		ID = UUID.randomUUID().toString();
-		name = "";
-		author = "";
-		info = "";
-		path = "";
-		liked = 0;
-		bought = 0;
-	}
-	
 	Image(String name, String author, String info, String path) {
 		ID = UUID.randomUUID().toString();
 		this.name = name;

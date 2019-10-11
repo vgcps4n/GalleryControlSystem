@@ -5,15 +5,13 @@ import javafx.collections.ObservableList;
 
 public abstract class Container {
 	protected static final ObservableList<User> users = FXCollections.observableArrayList();
-	
-	public boolean authenticate(String username, String password) {
-		for(User element: users)
-			if(element.getAuth().getUsername().equals(username))
-				if(element.getAuth().getPassword().equals(password))
-					return true;
-		return false;
+	protected static final AuthContainer auths = new AuthContainer();
+	public int authenticate(String username, String password) {
+		Auth auth = auths.find(username);
+		if(auth != null)
+			if(auth.getPassword().equals(password)) return 1;
+			else return 0;
+		else return -1;
 	}
-	
-	abstract public User createUser(String username, String password);
 	abstract public ObservableList<User> getUsers();
 }

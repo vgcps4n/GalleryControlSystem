@@ -1,7 +1,5 @@
 package controller;
 
-import com.jfoenix.controls.JFXButton;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,13 +18,9 @@ public class MainController {
 	
 	@FXML private Label username;
 	
-	@FXML private JFXButton login;
-	@FXML private JFXButton exit;
-	
     private Stage Stage;
     private boolean isLogged;
     private ImageContainer images;
-    
     
     public void setStage(Stage stage){
         this.Stage = stage;
@@ -56,6 +50,7 @@ public class MainController {
     
     @FXML
     void Exit(ActionEvent event) {
+    	System.out.println("bye.");
     	Stage.close();
     }
     

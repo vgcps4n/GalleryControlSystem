@@ -7,16 +7,7 @@ public class Member implements User {
 	Name name;
 	Auth auth;
 	int phone;
-	Member() {
-		ID = UUID.randomUUID().toString();
-		name = new Name();
-		auth = new Auth();
-	}
-	Member(String username, String password) {
-		ID = UUID.randomUUID().toString();
-		name = new Name();
-		auth = new Auth(username, password, this);
-	}
+	
 	Member(String lName, String fName, String username, String password, int phone, String address) {
 		ID = UUID.randomUUID().toString();
 		name = new Name(lName, fName);
