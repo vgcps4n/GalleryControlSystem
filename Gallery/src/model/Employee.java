@@ -1,33 +1,23 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Employee implements User {
 	private String ID;
 	private Name name;
 	private Auth auth;
 	private int phone;
-	private List<Image> images;
-	Employee() {
-		ID = UUID.randomUUID().toString();
-		name = new Name();
-		auth = new Auth();
-		images = new ArrayList<>();
-	}
-	Employee(String username, String password) {
-		ID = UUID.randomUUID().toString();
-		name = new Name();
-		auth = new Auth(username, password, this);
-		images = new ArrayList<>();
-	}
-	Employee(String lName, String fName, String username, String password, int phone) {
+	private ObservableList<Image> images;
+	
+	Employee(String lName, String fName, int phone, String username, String password) {
 		ID = UUID.randomUUID().toString();
 		name = new Name(lName, fName);
 		auth = new Auth(username, password, this);
 		this.phone = phone;
-		images = new ArrayList<>();
+		images = FXCollections.observableArrayList();
 	}
 	
 	public String getID() {
@@ -52,11 +42,14 @@ public class Employee implements User {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-	public List<Image> getImages() {
+	public ObservableList<Image> getImages() {
 		return images;
 	}
 	public void addImage(Image image) {
 		images.add(image);
+	}
+	public void deleteImage(Image image) {
+		images.remove(image);
 	}
 	@Override
 	public Auth getAuth() {

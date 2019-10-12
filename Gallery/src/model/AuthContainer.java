@@ -5,12 +5,9 @@ import java.util.List;
 
 public class AuthContainer {
 	private static final List<Auth> auths = new ArrayList<>();
-	public boolean create(Auth auth) {
-		if(!find(auth)) {
-			auths.add(auth);
-			return true;
-		}
-		return false;
+	
+	public void create(Auth auth) {
+		auths.add(auth);
 	}
 	
 	public boolean find(Auth auth) {

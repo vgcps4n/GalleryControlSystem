@@ -1,14 +1,15 @@
 package model;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.UUID;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class Company implements User {
 	String ID, name, about, address;
 	Auth auth;
 	int phone;
-	List<Employee> employees;
+	ObservableList<Employee> employees;
 	
 	public Company(String name, String about, String address, int phone, String username, String password) {
 		ID = UUID.randomUUID().toString();
@@ -17,7 +18,7 @@ public class Company implements User {
 		this.address = address;
 		this.auth = new Auth(username, password, this);
 		this.phone = phone;
-		this.employees = new ArrayList<>();
+		this.employees = FXCollections.observableArrayList();
 	}
 
 	public String getID() {
@@ -50,11 +51,14 @@ public class Company implements User {
 	public void setPhone(int phone) {
 		this.phone = phone;
 	}
-	public List<Employee> getEmployees() {
+	public ObservableList<Employee> getEmployees() {
 		return employees;
 	}
 	public void addEmployee(Employee employee) {
 		employees.add(employee);
+	}
+	public void deleteEmployee(Employee employee) {
+		employees.remove(employee);
 	}
 	@Override
 	public Auth getAuth() {

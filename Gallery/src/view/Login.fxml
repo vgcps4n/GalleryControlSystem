@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-	<!-- TODO Add Nodes -->
+<AnchorPane fx:id="root" prefHeight="150.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <TextField fx:id="username" layoutX="25.0" layoutY="21.0" prefHeight="25.0" prefWidth="200.0" promptText="Нэвтрэх нэр" />
+      <PasswordField fx:id="password" layoutX="26.0" layoutY="68.0" prefWidth="200.0" promptText="Нууц үг" />
+      <JFXButton layoutX="26.0" layoutY="111.0" onAction="#Register" text="Бүртгүүлэх" />
+      <JFXButton layoutX="109.0" layoutY="111.0" onAction="#Login" text="Нэвтрэх" />
+      <JFXButton layoutX="184.0" layoutY="111.0" onAction="#Cancel" text="Хаах" />
+   </children>
 </AnchorPane>
-
