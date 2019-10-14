@@ -30,7 +30,7 @@ public class CompanyController {
 	@FXML private PasswordField password;
 	@FXML private PasswordField confirm;
 	
-	private Stage Stage;
+	private Stage stage;
 	private Scene root;
 	private Company company;
 	private ObservableList<Name> names = FXCollections.observableArrayList();
@@ -38,11 +38,11 @@ public class CompanyController {
 	private EmployeeContainer employees;
 	
 	public Stage getStage() {
-		return Stage;
+		return stage;
 	}
 
 	public void setStage(Stage stage) {
-		Stage = stage;
+		this.stage = stage;
 	}
 	
 	public void setRoot(Scene root) {
@@ -71,21 +71,22 @@ public class CompanyController {
 			username.getText().toString().equals("") ||
 			password.getText().toString().equals("") ||
 			confirm.getText().toString().equals("")) {
-		new Dialog(pane, Stage, "Талбар дутуу байна.", "Бүх талбрыг бөглөнө үү.", 400, 280);
-	} else if(!password.getText().toString().equals(confirm.getText().toString()))
-		new Dialog(pane, Stage, "Нууц үг таарсангүй.", "Нууц үгээ шалгана уу.", 400, 280);
-	else {
-		User employee = employees.createEmployee(fName.getText().toString(), lName.getText().toString(), 
-				Integer.parseInt(phone.getText().toString()), username.getText().toString(), password.getText().toString());
-		if(employee == null) {
-			new Dialog(pane, Stage, "Нэвтрэх нэр бүртгэгдсэн байна.", "Өөр нэвтрэх нэр сонгоно уу.", 400, 280);
-			return;
+			new Dialog(pane, stage, "Талбар дутуу байна.", "Бүх талбрыг бөглөнө үү.", 400, 280);
+		} else if(!password.getText().toString().equals(confirm.getText().toString()))
+			new Dialog(pane, stage, "Нууц үг таарсангүй.", "Нууц үгээ шалгана уу.", 400, 280);
+		else {
+			User employee = employees.createEmployee(lName.getText().toString(), fName.getText().toString(), 
+					Integer.parseInt(phone.getText().toString()), username.getText().toString(), password.getText().toString());
+			if(employee == null) {
+				new Dialog(pane, stage, "Нэвтрэх нэр бүртгэгдсэн байна.", "Өөр нэвтрэх нэр сонгоно уу.", 400, 280);
+				return;
+			}
+			new Dialog(pane, stage, "Амжилттай.", "Ажилтан амжилттай бүртгэгдлээ.", 400, 280);
+			company.addEmployee((Employee) employee);
+			names.add(((Employee) employee).getName());
+			table.refresh();
+			clear();
 		}
-		new Dialog(pane, Stage, "Амжилттай.", "Ажилтан амжилттай бүртгэгдлээ.", 400, 280);
-		company.addEmployee((Employee) employee);
-		table.refresh();
-		clear();
-	}
 	}
 
     void clear() {
@@ -99,6 +100,7 @@ public class CompanyController {
     
 	@FXML
 	void Logout() {
-		Stage.setScene(root);
+		stage.setTitle("Gallery Control System");
+		stage.setScene(root);
 	}
 }

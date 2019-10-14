@@ -26,18 +26,18 @@ public class AdminController {
 	@FXML private PasswordField password;
 	@FXML private PasswordField confirm;
 	
-    private Stage Stage;
+    private Stage stage;
     private Scene root;
     
     private CompanyContainer companies;
     
     public void setStage(Stage stage){
-        this.Stage = stage;
+        this.stage = stage;
         table.setItems(companies.getUsers());
     }
     
     public Stage getStage (Stage stage) {
-    	return Stage;
+    	return stage;
     }
 
     public void setRoot(Scene root) {
@@ -63,18 +63,18 @@ public class AdminController {
 				username.getText().toString().equals("") ||
 				password.getText().toString().equals("") ||
 				confirm.getText().toString().equals("")) {
-			new Dialog(pane, Stage, "Талбар дутуу байна.", "Бүх талбрыг бөглөнө үү.", 650, 250);
+			new Dialog(pane, stage, "Талбар дутуу байна.", "Бүх талбрыг бөглөнө үү.", 650, 250);
 		} else if(!password.getText().toString().equals(confirm.getText().toString()))
-			new Dialog(pane, Stage, "Нууц үг таарсангүй.", "Нууц үгээ шалгана уу.", 650, 250);
+			new Dialog(pane, stage, "Нууц үг таарсангүй.", "Нууц үгээ шалгана уу.", 650, 250);
 		else {
 			User company = companies.createCompany(name.getText().toString(), about.getText().toString(), 
 					address.getText().toString(), Integer.parseInt(phone.getText().toString()), 
 					username.getText().toString(), password.getText().toString());
 			if(company == null) {
-				new Dialog(pane, Stage, "Нэвтрэх нэр бүртгэгдсэн байна.", "Өөр нэвтрэх нэр сонгоно уу.", 650, 250);
+				new Dialog(pane, stage, "Нэвтрэх нэр бүртгэгдсэн байна.", "Өөр нэвтрэх нэр сонгоно уу.", 650, 250);
 				return;
 			}
-			new Dialog(pane, Stage, "Амжилттай.", "Компани амжилттай бүртгэгдлээ.", 650, 250);
+			new Dialog(pane, stage, "Амжилттай.", "Компани амжилттай бүртгэгдлээ.", 650, 250);
 			table.refresh();
 			clear();
 		}
@@ -92,7 +92,8 @@ public class AdminController {
     
     @FXML
     void Logout() {
-    	Stage.setScene(root);
+    	stage.setTitle("Gallery Control System");
+    	stage.setScene(root);
     }
     
 }

@@ -4,13 +4,14 @@ import java.util.UUID;
 
 public class Image {
 	String ID, name, author, path, info;
-	int liked, bought;
+	int liked, bought, price;
 	
-	Image(String name, String author, String info, String path) {
+	Image(String name, String author, String info, int price, String path) {
 		ID = UUID.randomUUID().toString();
 		this.name = name;
 		this.author = author;
 		this.info = info;
+		this.price = price;
 		this.path = path;
 		liked = 0;
 		bought = 0;
@@ -56,20 +57,37 @@ public class Image {
 		this.info = info;
 	}
 
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
 	public int getLiked() {
 		return liked;
 	}
 
-	public void setLiked(int liked) {
-		this.liked = liked;
+	public void incLiked() {
+		liked++;
 	}
 
+	public void decLiked() {
+		liked--;
+	}
+	
 	public int getBought() {
 		return bought;
 	}
 
-	public void setBought(int bought) {
-		this.bought = bought;
+	public void incBought() {
+		bought++;
+	}
+
+
+	public void decBought() {
+		bought--;
 	}
 
 }

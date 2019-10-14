@@ -2,11 +2,15 @@ package model;
 
 import java.util.UUID;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class Member implements User {
 	String ID, address;
 	Name name;
 	Auth auth;
 	int phone;
+	ObservableList<Image> liked;
 	
 	Member(String lName, String fName, String username, String password, int phone, String address) {
 		ID = UUID.randomUUID().toString();
@@ -14,6 +18,7 @@ public class Member implements User {
 		auth = new Auth(username, password, this);
 		this.phone = phone;
 		this.address = address;
+		liked = FXCollections.observableArrayList();
 	}
 	
 	public String getID() {
@@ -34,6 +39,20 @@ public class Member implements User {
 	
 	public Name getName() {
 		return name;
+	}
+
+	public void addLiked(Image image) {
+		liked.add(image);
+	}
+	
+	public void deleteLiked(Image image) {
+		liked.remove(image);
+	}
+	
+	public boolean findLiked(Image image) {
+		if(liked.contains(image)) 
+			return true;
+		return false;
 	}
 	
 	@Override

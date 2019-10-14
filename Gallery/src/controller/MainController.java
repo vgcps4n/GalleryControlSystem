@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -23,8 +22,10 @@ import model.Image;
 import model.ImageContainer;
 import model.Member;
 import model.User;
+import view.Dialog;
 
 public class MainController {
+	@FXML private BorderPane pane;
 	@FXML private TableView<Image> table;
 	@FXML private TableColumn<Image, String> colName;
 	@FXML private TableColumn<Image, String> colAuthor;
@@ -54,9 +55,23 @@ public class MainController {
         isLogged = false;
         images = new ImageContainer();
     }
+    
+    @FXML
+    void Clicked() {
+    	if(!isLogged) {
+    		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 500, 400);
+    		return;
+    	}
+    	if(table.getSelectionModel().getSelectedItem() == null) {
+    		new Dialog(pane, Stage, "Зураг аа сонгоно уу.", "Үзэх зураг сонгогдоогүй байна.", 500, 400);
+    		return;
+    	}
+    	System.out.println("Clicked.");
+    	OpenImageWindow(table.getSelectionModel().getSelectedItem());
+    }
 
     @FXML
-    void Login(ActionEvent event) {
+    void Login() {
     	if(!isLogged) 
     		OpenLoginWindow();
     	else {
@@ -70,9 +85,36 @@ public class MainController {
     }
     
     @FXML
-    void Exit(ActionEvent event) {
+    void Exit() {
     	System.out.println("bye.");
     	Stage.close();
+    }
+    
+    private void OpenImageWindow(Image image) {
+    	try {
+        	FXMLLoader loader = new FXMLLoader();
+        	loader.setLocation(Main.class.getResource("/view/Image.fxml"));
+			BorderPane img = (BorderPane) loader.load();
+			
+			Stage imageWindow = new Stage();
+            imageWindow.initModality(Modality.WINDOW_MODAL);
+			imageWindow.initOwner(Stage);
+			Scene scene = new Scene(img);
+			imageWindow.setScene(scene);
+			
+			ImageController controller = loader.getController();
+			imageWindow.setTitle(image.getName());
+			controller.setDialogStage(imageWindow);
+			controller.setImage(image);
+			controller.setMember((Member) user);
+			
+			imageWindow.showAndWait();
+			
+		} catch (IOException e) {
+			System.out.println("sad");
+			e.printStackTrace();
+		}
+    	
     }
     
     private void OpenLoginWindow() {
@@ -102,7 +144,7 @@ public class MainController {
 	            	username.setText(((Member) user).getName().getFirst() + " та тавтай морилно уу.");
 	            	this.login.textProperty().setValue("Өөр хэрэглэгчээр нэвтрэх");
 	        	} else if(user instanceof Employee) {
-	        		System.out.println("Employee logged in.");
+	        		SwitchEmployeeWindow((Employee) user);
 	        	} else if(user instanceof Company) {
 	        		SwitchCompanyWindow((Company) user);
 	        	} else if(user instanceof Admin) {
@@ -125,7 +167,7 @@ public class MainController {
             AdminController controller = loader.getController();
             controller.setStage(Stage);
             controller.setRoot(Stage.getScene());
-            
+            Stage.setTitle("Админ");
     	    Stage.setScene(adminWindow);
     	}catch(IOException e) {
     		e.printStackTrace();
@@ -144,8 +186,27 @@ public class MainController {
             controller.setStage(Stage);
             controller.setRoot(Stage.getScene());
             controller.setCompany(company);
-            
+            Stage.setTitle("Компани");
     	    Stage.setScene(companyWindow);
+    	}catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    private void SwitchEmployeeWindow(Employee employee) {
+    	try {
+    		FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/view/Employee.fxml"));
+            BorderPane emp = (BorderPane) loader.load();
+
+            Scene employeeWindow = new Scene(emp);
+            
+            EmployeeController controller = loader.getController();
+            controller.setStage(Stage);
+            controller.setRoot(Stage.getScene());
+            controller.setEmployee(employee);
+            Stage.setTitle("Ажилтан");
+    	    Stage.setScene(employeeWindow);
     	}catch(IOException e) {
     		e.printStackTrace();
     	}

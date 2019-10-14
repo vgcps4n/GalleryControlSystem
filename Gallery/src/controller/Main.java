@@ -22,7 +22,7 @@ public class Main extends Application {
 
 	        MainController controller = loader.getController();
 	        controller.setStage(primaryStage);
-	
+
 	        Scene scene = new Scene(root);
 	        
 	        stage.setTitle("Gallery Control System");
