@@ -5,6 +5,7 @@ module gallery {
 	requires java.sql;
 	requires com.jfoenix;
 	requires java.desktop;
+	requires javafx.base;
 	
 	opens controller to javafx.fxml, javafx.graphics;
 	exports controller;

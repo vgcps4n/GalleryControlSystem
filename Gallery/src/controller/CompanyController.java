@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,6 +24,7 @@ public class CompanyController {
 	@FXML private TableView<Name> table;
 	@FXML private TableColumn<Name, String> colL;
 	@FXML private TableColumn<Name, String> colF;
+	@FXML private Label name;
 	@FXML private TextField fName;
 	@FXML private TextField lName;
 	@FXML private TextField phone;
@@ -54,6 +56,7 @@ public class CompanyController {
 		for(Employee employee: this.company.getEmployees()) 
 			names.add(employee.getName());
 		table.setItems(names);
+		name.setText(this.company.getName() + " Компани");
 	}
 	
 	@FXML

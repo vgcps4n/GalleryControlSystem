@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +31,8 @@ public class MainController {
 	@FXML private TableColumn<Image, String> colName;
 	@FXML private TableColumn<Image, String> colAuthor;
 	@FXML private TableColumn<Image, String> colInfo;
+	@FXML private TableColumn<Image, Integer> colPrice;
+	@FXML private TableColumn<Image, Integer> colLiked;
 	@FXML private JFXButton login;
 	@FXML private Label username;
 	
@@ -52,24 +55,25 @@ public class MainController {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         colInfo.setCellValueFactory(new PropertyValueFactory<>("info"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colLiked.setCellValueFactory(new PropertyValueFactory<>("liked"));
         isLogged = false;
         images = new ImageContainer();
+        table.setRowFactory(tv -> {
+        	TableRow<Image> row = new TableRow<>();
+        	row.setOnMouseClicked(event -> {
+        		if(event.getClickCount() == 2 && !row.isEmpty()) {
+        			if(!isLogged) {
+                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 500, 400);
+                		return;
+                	}
+        			OpenImageWindow(row.getItem());
+        		}
+        	});
+            return row;
+        });
     }
     
-    @FXML
-    void Clicked() {
-    	if(!isLogged) {
-    		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 500, 400);
-    		return;
-    	}
-    	if(table.getSelectionModel().getSelectedItem() == null) {
-    		new Dialog(pane, Stage, "Зураг аа сонгоно уу.", "Үзэх зураг сонгогдоогүй байна.", 500, 400);
-    		return;
-    	}
-    	System.out.println("Clicked.");
-    	OpenImageWindow(table.getSelectionModel().getSelectedItem());
-    }
-
     @FXML
     void Login() {
     	if(!isLogged) 
@@ -109,7 +113,7 @@ public class MainController {
 			controller.setMember((Member) user);
 			
 			imageWindow.showAndWait();
-			
+			table.refresh();
 		} catch (IOException e) {
 			System.out.println("sad");
 			e.printStackTrace();

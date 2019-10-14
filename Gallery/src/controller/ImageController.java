@@ -12,7 +12,7 @@ import model.Image;
 import model.Member;
 
 public class ImageController {
-	@FXML private Label name, author, price, info, bought, liked;
+	@FXML private Label name, author, price, draw, year, type, info, bought, liked, count;
 	@FXML private ImageView ivImage;
 	@FXML private JFXButton like;
 	
@@ -52,8 +52,12 @@ public class ImageController {
 		
 		name.setText(image.getName());
 		author.setText(image.getAuthor());
-		price.setText(Integer.toString(image.getPrice()));
+		draw.setText(image.getDraw());
+		type.setText(image.getType());
 		info.setText(image.getInfo());
+		price.setText(Integer.toString(image.getPrice()));
+		year.setText(Integer.toString(image.getYear()));
+		count.setText(Integer.toString(image.getCount()));
 		bought.setText(Integer.toString(image.getBought()));
 		liked.setText(Integer.toString(image.getLiked()));
 		

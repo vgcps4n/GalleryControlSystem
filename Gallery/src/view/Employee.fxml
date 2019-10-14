@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
@@ -13,39 +14,46 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="pane" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
+<BorderPane fx:id="pane" prefHeight="290.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EmployeeController">
    <center>
-      <GridPane prefHeight="200.0" prefWidth="269.0" BorderPane.alignment="CENTER">
+      <GridPane hgap="5.0" prefHeight="200.0" prefWidth="269.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="49.0" minWidth="9.0" prefWidth="9.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="244.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="0.0" prefWidth="0.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="244.0" minWidth="10.0" prefWidth="160.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="168.0" minWidth="0.0" prefWidth="168.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="103.0" minWidth="10.0" prefWidth="14.0" />
             <ColumnConstraints />
         </columnConstraints>
         <rowConstraints>
             <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="12.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="41.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="108.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="108.0" minHeight="0.0" prefHeight="39.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="34.0" minHeight="9.0" prefHeight="34.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="34.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="74.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="108.0" minHeight="0.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="33.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="78.0" minHeight="10.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="62.0" minHeight="5.0" prefHeight="38.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="51.0" minHeight="9.0" prefHeight="36.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="31.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Text fx:id="username" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
             <TextField fx:id="name" promptText="Зургийн нэр" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="price" promptText="Үнэ" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <TextArea fx:id="info" prefHeight="200.0" prefWidth="200.0" promptText="Тайлбар" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <JFXButton onAction="#Choose" text="Зураг сонгох" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Text fx:id="imagename" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+            <TextField fx:id="type" promptText="Зургийн төрөл" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <JFXButton onAction="#Choose" text="Зураг сонгох" GridPane.columnIndex="1" GridPane.rowIndex="5" GridPane.rowSpan="2" />
+            <Label text="(зөвхөн JPG)" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.rowSpan="2" />
+            <TextField fx:id="draw" promptText="Юугаар зурсан" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField fx:id="year" promptText="Зурсан он" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextField fx:id="count" promptText="Зургийн тоо ширхэг" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <TextArea fx:id="info" prefHeight="200.0" prefWidth="200.0" promptText="Тайлбар" GridPane.columnIndex="2" GridPane.rowIndex="5" GridPane.rowSpan="2" />
+            <Text fx:id="imagename" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="RIGHT" GridPane.rowIndex="7" />
          </children>
       </GridPane>
    </center>
    <right>
-      <TableView fx:id="table" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="table" prefHeight="238.0" prefWidth="195.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colName" prefWidth="99.0" text="Нэр" />
-          <TableColumn fx:id="colPrice" prefWidth="96.0" text="Үнэ" />
+          <TableColumn fx:id="colName" prefWidth="120.0" text="Нэр" />
+          <TableColumn fx:id="colPrice" prefWidth="72.0" text="Үнэ" />
         </columns>
       </TableView>
    </right>

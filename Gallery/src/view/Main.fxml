@@ -8,10 +8,12 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="pane" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+<BorderPane fx:id="pane" prefHeight="400.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
@@ -55,12 +57,27 @@
       </HBox>
    </bottom>
    <center>
-      <TableView fx:id="table" onMouseClicked="#Clicked" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="colName" prefWidth="170.0" text="Нэр" />
-          <TableColumn fx:id="colAuthor" prefWidth="115.0" text="Зураач" />
-            <TableColumn fx:id="colInfo" prefWidth="213.0" text="Тайлбар" />
-        </columns>
-      </TableView>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="31.0" prefWidth="500.0">
+               <children>
+                  <TextField fx:id="search" promptText="Хайх">
+                     <HBox.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </HBox.margin>
+                  </TextField>
+               </children>
+            </HBox>
+            <TableView fx:id="table" prefHeight="293.0" prefWidth="500.0">
+              <columns>
+                <TableColumn fx:id="colName" prefWidth="100.0" text="Нэр" />
+                <TableColumn fx:id="colAuthor" prefWidth="94.0" text="Зураач" />
+                  <TableColumn fx:id="colPrice" prefWidth="104.0" text="Үнэ" />
+                  <TableColumn fx:id="colInfo" prefWidth="171.0" text="Тайлбар" />
+                  <TableColumn fx:id="colLiked" prefWidth="26.0" text="&lt;3" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
    </center>
 </BorderPane>

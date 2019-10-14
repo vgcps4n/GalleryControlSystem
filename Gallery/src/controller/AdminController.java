@@ -1,5 +1,7 @@
 package controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
@@ -10,14 +12,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.Company;
 import model.CompanyContainer;
 import model.User;
 import view.Dialog;
 
 public class AdminController {
 	@FXML private BorderPane pane;
-	@FXML private TableView<User> table;
-	@FXML private TableColumn<User, String> colName;
+	@FXML private TableView<Company> table;
+	@FXML private TableColumn<Company, String> colName;
 	@FXML private TextField name;
 	@FXML private TextField phone;
 	@FXML private TextArea about;
@@ -30,10 +33,14 @@ public class AdminController {
     private Scene root;
     
     private CompanyContainer companies;
+    private ObservableList<Company> comps;
     
     public void setStage(Stage stage){
         this.stage = stage;
-        table.setItems(companies.getUsers());
+        for(User company: companies.getUsers())
+        	if(company instanceof Company)
+        		comps.add((Company) company);
+        table.setItems(comps);
     }
     
     public Stage getStage (Stage stage) {
@@ -52,6 +59,7 @@ public class AdminController {
     void initialize() {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
     	companies = new CompanyContainer();
+    	comps  = FXCollections.observableArrayList();
     }
     
     @FXML
@@ -67,7 +75,7 @@ public class AdminController {
 		} else if(!password.getText().toString().equals(confirm.getText().toString()))
 			new Dialog(pane, stage, "Нууц үг таарсангүй.", "Нууц үгээ шалгана уу.", 650, 250);
 		else {
-			User company = companies.createCompany(name.getText().toString(), about.getText().toString(), 
+			Company company = (Company) companies.createCompany(name.getText().toString(), about.getText().toString(), 
 					address.getText().toString(), Integer.parseInt(phone.getText().toString()), 
 					username.getText().toString(), password.getText().toString());
 			if(company == null) {
@@ -75,6 +83,7 @@ public class AdminController {
 				return;
 			}
 			new Dialog(pane, stage, "Амжилттай.", "Компани амжилттай бүртгэгдлээ.", 650, 250);
+			comps.add(company);
 			table.refresh();
 			clear();
 		}

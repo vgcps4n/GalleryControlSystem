@@ -3,15 +3,21 @@ package model;
 import java.util.UUID;
 
 public class Image {
-	String ID, name, author, path, info;
-	int liked, bought, price;
+	String ID, name, author, path, info, type, draw;
+	int liked, bought, price, year, count;
 	
-	Image(String name, String author, String info, int price, String path) {
+	Image(String name, String author, String info, 
+			int price, String draw, String type, 
+			int year, int count, String path) {
 		ID = UUID.randomUUID().toString();
 		this.name = name;
 		this.author = author;
 		this.info = info;
 		this.price = price;
+		this.draw = draw;
+		this.type = type;
+		this.year = year;
+		this.count = count;
 		this.path = path;
 		liked = 0;
 		bought = 0;
@@ -63,6 +69,38 @@ public class Image {
 
 	public void setPrice(int price) {
 		this.price = price;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getDraw() {
+		return draw;
+	}
+
+	public void setDraw(String draw) {
+		this.draw = draw;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	public void setYear(int year) {
+		this.year = year;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 	public int getLiked() {

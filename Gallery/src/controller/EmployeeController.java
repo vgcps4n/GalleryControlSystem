@@ -27,9 +27,8 @@ public class EmployeeController {
 	@FXML private BorderPane pane;
 	@FXML private Text username;
 	@FXML private Text imagename;
-	@FXML private TextField name;
+	@FXML private TextField name, price, type, draw, year, count;
 	@FXML private TextArea info;
-	@FXML private TextField price;
 	@FXML private TableView<Image> table;
 	@FXML private TableColumn<Image, String> colName;
 	@FXML private TableColumn<Image, String> colPrice;
@@ -88,21 +87,41 @@ public class EmployeeController {
 		if(name.getText().toString().equals("") ||
 			info.getText().toString().equals("") ||
 			price.getText().toString().equals("") ||
+			type.getText().toString().equals("") ||
+			draw.getText().toString().equals("") ||
+			year.getText().toString().equals("") ||
+			count.getText().toString().equals("") ||
 			imagename.getText().toString().equals("")) {
-			new Dialog(pane, stage, "Талбар дутуу байна.", "Бүх талбрыг бөглөнө үү.", 400, 280);
+			new Dialog(pane, stage, "Талбар дутуу байна.", "Бүх талбрыг бөглөнө үү.", 560, 290);
+			return;
 		}
 		try {
 			Image image = images.createImage(name.getText().toString(),
 					employee.getName().getFirst(), info.getText().toString(),
-					Integer.parseInt(price.getText().toString()), 
-					path + "/" + imagename.getText());
-			
+					Integer.parseInt(price.getText().toString()), draw.getText().toString(), 
+					type.getText().toString(), Integer.parseInt(year.getText().toString()), 
+					Integer.parseInt(count.getText().toString()), path + "/" + imagename.getText());
+			if(image == null)
+				new Dialog(pane, stage, "Зураг бүртгэгдсэн байна.", "Өөр зураг оруулна уу.", 560, 290);
 			ImageIO.write(bi, "jpg", new File(path + "/" + file.getName()));
 			employee.addImage(image);
+			new Dialog(pane, stage, "Амжилттай.", "Зураг амжилттай бүртгэгдлээ.", 560, 290);
 			table.refresh();
+			clear();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	void clear() {
+		name.setText("");
+		price.setText("");
+		draw.setText("");
+		type.setText("");
+		year.setText("");
+		count.setText("");
+		info.setText("");
+		imagename.setText("");
 	}
 	
 	@FXML

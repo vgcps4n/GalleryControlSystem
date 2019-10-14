@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane fx:id="pane" prefHeight="250.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
+<BorderPane fx:id="pane" prefHeight="250.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminController">
    <center>
       <GridPane prefHeight="186.0" prefWidth="443.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -36,10 +36,10 @@
             <TextField fx:id="name" promptText="Компаний нэр" GridPane.columnIndex="1" />
             <TextField fx:id="phone" promptText="Утасны дугаар" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="username" promptText="Нэвтрэх нэр" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextArea fx:id="about" prefHeight="200.0" prefWidth="200.0" promptText="Компаний тухай" GridPane.columnIndex="3" GridPane.rowSpan="2" />
-            <TextArea fx:id="address" prefHeight="200.0" prefWidth="233.0" promptText="Хаяг" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2" />
             <PasswordField fx:id="password" promptText="Нууц үг" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <PasswordField fx:id="confirm" promptText="Нууц үг дахин оруулах" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextArea fx:id="about" prefHeight="200.0" prefWidth="200.0" promptText="Компаний тухай" GridPane.columnIndex="3" GridPane.rowSpan="2" />
+            <TextArea fx:id="address" prefHeight="200.0" prefWidth="233.0" promptText="Хаяг" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="2" />
          </children>
       </GridPane>
    </center>
