@@ -78,6 +78,10 @@ public class CompanyController {
 		} else if(!password.getText().toString().equals(confirm.getText().toString()))
 			new Dialog(pane, stage, "Нууц үг таарсангүй.", "Нууц үгээ шалгана уу.", 400, 280);
 		else {
+			if(!phone.getText().toString().matches("[0-9]*")) {
+				new Dialog(pane, stage, "Дугаар буруу байна.", "Дугаараа зөв оруулна уу.", 400, 280);
+				return;
+			}
 			User employee = employees.createEmployee(lName.getText().toString(), fName.getText().toString(), 
 					Integer.parseInt(phone.getText().toString()), username.getText().toString(), password.getText().toString());
 			if(employee == null) {

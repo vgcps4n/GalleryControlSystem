@@ -55,6 +55,10 @@ public class Member implements User {
 		return false;
 	}
 	
+	public ObservableList<Image> getLiked() {
+		return liked;
+	}
+	
 	@Override
 	public Auth getAuth() {
 		return auth;

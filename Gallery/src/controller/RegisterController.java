@@ -53,6 +53,10 @@ public class RegisterController {
 		} else if(!password.getText().toString().equals(confirm.getText().toString()))
 			new Dialog(root, dialogStage, "Нууц үг таарсангүй.", "Нууц үгээ шалгана уу.", 350, 220);
 		else {
+			if(!phone.getText().toString().matches("[0-9]*")) {
+				new Dialog(root, dialogStage, "Зургийн тоо буруу байна.", "Үнэн зөв тоо оруулна уу.", 350, 220);
+				return;
+			}
 			User member = members.createMember(lName.getText().toString(), fName.getText().toString(), 
 					username.getText().toString(), password.getText().toString(), 
 					Integer.parseInt(phone.getText().toString()), address.getText().toString());

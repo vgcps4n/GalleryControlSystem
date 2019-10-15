@@ -3,7 +3,10 @@ package controller;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXToggleButton;
 
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -11,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -33,6 +37,8 @@ public class MainController {
 	@FXML private TableColumn<Image, String> colInfo;
 	@FXML private TableColumn<Image, Integer> colPrice;
 	@FXML private TableColumn<Image, Integer> colLiked;
+	@FXML private TextField search;
+	@FXML private JFXToggleButton liked;
 	@FXML private JFXButton login;
 	@FXML private Label username;
 	
@@ -40,11 +46,11 @@ public class MainController {
     private boolean isLogged;
     private User user;
     private ImageContainer images;
+    private FilteredList<Image> filter;
     
     public void setStage(Stage stage){
         this.Stage = stage;
-        table.setItems(images.getImages());
-    }
+    } 
     
     public Stage getStage (Stage stage) {
     	return Stage;
@@ -59,6 +65,8 @@ public class MainController {
         colLiked.setCellValueFactory(new PropertyValueFactory<>("liked"));
         isLogged = false;
         images = new ImageContainer();
+        table.setPlaceholder(new Label("Таны хайсан зураг олдсонгүй."));
+        
         table.setRowFactory(tv -> {
         	TableRow<Image> row = new TableRow<>();
         	row.setOnMouseClicked(event -> {
@@ -71,6 +79,37 @@ public class MainController {
         		}
         	});
             return row;
+        });
+        
+        filter = new FilteredList<>(images.getImages(), p -> true);
+        search.textProperty().addListener((observable, oldValue, newValue) -> {
+        	filter.setPredicate(image -> {
+        		
+        		if(newValue == null || newValue.isEmpty())
+            		return true;
+        		String lower = newValue.toLowerCase();
+        		if(image.getName().toLowerCase().contains(lower))
+        			return true;
+        		if(image.getAuthor().toLowerCase().contains(lower))
+        			return true;
+        		if(image.getInfo().toLowerCase().contains(lower))
+        			return true;
+        		if(Integer.toString(image.getPrice()).toLowerCase().contains(lower))
+        			return true;
+        		return false;
+        	});
+        });
+        SortedList<Image> sorted = new SortedList<>(filter);
+        sorted.comparatorProperty().bind(table.comparatorProperty());
+        table.setItems(sorted);
+        
+        liked.selectedProperty().addListener(e -> {
+        	if(isLogged) {
+        		if(liked.isSelected())
+        			table.setItems(((Member) user).getLiked());
+        		else
+        			table.setItems(sorted);
+        	}
         });
     }
     

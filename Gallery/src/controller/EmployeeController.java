@@ -96,6 +96,18 @@ public class EmployeeController {
 			return;
 		}
 		try {
+			if(!price.getText().toString().matches("[0-9]*")) {
+				new Dialog(pane, stage, "Үнэ буруу байна.", "Үнийг зөвхөн тоогоор оруулна уу.", 560, 290);
+				return;
+			}
+			if(!year.getText().toString().matches("[0-9]*")) {
+				new Dialog(pane, stage, "Жил буруу байна.", "Үнэн зөв жил оруулна уу.", 560, 290);
+				return;
+			}
+			if(!count.getText().toString().matches("[0-9]*")) {
+				new Dialog(pane, stage, "Зургийн тоо буруу байна.", "Үнэн зөв тоо оруулна уу.", 560, 290);
+				return;
+			}
 			Image image = images.createImage(name.getText().toString(),
 					employee.getName().getFirst(), info.getText().toString(),
 					Integer.parseInt(price.getText().toString()), draw.getText().toString(), 
