@@ -37,9 +37,14 @@ public class MainController {
 	@FXML private TableColumn<Image, String> colInfo;
 	@FXML private TableColumn<Image, Integer> colPrice;
 	@FXML private TableColumn<Image, Integer> colLiked;
+	
+	@FXML private TableView<Image> bag;
+	@FXML private TableColumn<Image, String> colBag;
+	
 	@FXML private TextField search;
 	@FXML private JFXToggleButton liked;
 	@FXML private JFXButton login;
+	@FXML private JFXButton order;
 	@FXML private Label username;
 	
     private Stage Stage;
@@ -63,11 +68,29 @@ public class MainController {
         colInfo.setCellValueFactory(new PropertyValueFactory<>("info"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colLiked.setCellValueFactory(new PropertyValueFactory<>("liked"));
+
+        colBag.setCellValueFactory(new PropertyValueFactory<>("name"));
+        
         isLogged = false;
         images = new ImageContainer();
         table.setPlaceholder(new Label("Таны хайсан зураг олдсонгүй."));
+        bag.setPlaceholder(new Label("Хоосон."));
         
         table.setRowFactory(tv -> {
+        	TableRow<Image> row = new TableRow<>();
+        	row.setOnMouseClicked(event -> {
+        		if(event.getClickCount() == 2 && !row.isEmpty()) {
+        			if(!isLogged) {
+                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 500, 400);
+                		return;
+                	}
+        			OpenImageWindow(row.getItem());
+        		}
+        	});
+            return row;
+        });
+        
+        bag.setRowFactory(tv -> {
         	TableRow<Image> row = new TableRow<>();
         	row.setOnMouseClicked(event -> {
         		if(event.getClickCount() == 2 && !row.isEmpty()) {
@@ -115,10 +138,13 @@ public class MainController {
     
     @FXML
     void Login() {
-    	if(!isLogged) 
+    	if(!isLogged) {
     		OpenLoginWindow();
-    	else {
+    	} else {
     		isLogged = false;
+    		bag.setDisable(true);
+    		bag.setItems(null);
+    		order.setDisable(true);
         	this.login.textProperty().setValue("Нэвтрэх");
         	username.setText("");
         	user = null;
@@ -184,6 +210,9 @@ public class MainController {
             	user = controller.getAuth().getUser();
 	        	if(user instanceof Member) {
 	            	isLogged = true;
+	        		bag.setDisable(false);
+	        		bag.setItems(((Member) user).getBag());
+	        		order.setDisable(false);
 	            	username.setText(((Member) user).getName().getFirst() + " та тавтай морилно уу.");
 	            	this.login.textProperty().setValue("Өөр хэрэглэгчээр нэвтрэх");
 	        	} else if(user instanceof Employee) {

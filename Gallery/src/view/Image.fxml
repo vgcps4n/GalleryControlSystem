@@ -66,8 +66,8 @@
    <bottom>
       <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <buttons>
-            <JFXButton fx:id="like" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#Like" prefHeight="25.0" prefWidth="99.0" text=" " />
-            <JFXButton onAction="#Order" text="Захиалах" />
+            <JFXButton fx:id="like" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onAction="#Like" prefHeight="25.0" prefWidth="119.0" text=" " />
+            <JFXButton fx:id="bag" onAction="#Bag" text=" " />
             <JFXButton onAction="#Close" text="Хаах" />
          </buttons>
          <padding>

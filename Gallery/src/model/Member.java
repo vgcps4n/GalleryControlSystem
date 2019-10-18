@@ -10,7 +10,7 @@ public class Member implements User {
 	Name name;
 	Auth auth;
 	int phone;
-	ObservableList<Image> liked;
+	ObservableList<Image> liked, bag;
 	
 	Member(String lName, String fName, String username, String password, int phone, String address) {
 		ID = UUID.randomUUID().toString();
@@ -19,6 +19,7 @@ public class Member implements User {
 		this.phone = phone;
 		this.address = address;
 		liked = FXCollections.observableArrayList();
+		bag = FXCollections.observableArrayList();
 	}
 	
 	public String getID() {
@@ -57,6 +58,24 @@ public class Member implements User {
 	
 	public ObservableList<Image> getLiked() {
 		return liked;
+	}
+	
+	public void addToBag(Image image) {
+		bag.add(image);
+	}
+	
+	public void deleteFromBag(Image image) {
+		bag.remove(image);
+	}
+	
+	public boolean findFromBag(Image image) {
+		if(bag.contains(image))
+			return true;
+		return false;
+	}
+	
+	public ObservableList<Image> getBag() {
+		return bag;
 	}
 	
 	@Override

@@ -14,7 +14,7 @@ import model.Member;
 public class ImageController {
 	@FXML private Label name, author, price, draw, year, type, info, bought, liked, count;
 	@FXML private ImageView ivImage;
-	@FXML private JFXButton like;
+	@FXML private JFXButton like, bag;
 	
 	private Stage dialogStage;
 	private Image image;
@@ -37,10 +37,16 @@ public class ImageController {
 
 	public void setMember(Member member) {
 		this.member = member;
+		
 		if(member.findLiked(image))
 			like.setText("Таалагдсангүй");
 		else 
 			like.setText("Таалагдлаа");
+		
+		if(member.findFromBag(image))
+			bag.setText("Сагснаас гаргах");
+		else
+			bag.setText("Сагсанд хйих");
 	}
 	
 	public Image getImage() {
@@ -84,8 +90,14 @@ public class ImageController {
 	}
 	
 	@FXML
-	void Order() {
-		
+	void Bag() {
+		if(member.findFromBag(image)) {
+			member.deleteFromBag(image);
+			bag.setText("Сагсанд хйих");
+		} else {
+			member.addToBag(image);
+			bag.setText("Сагснаас гаргах");
+		}
 	}
 	
 	@FXML
