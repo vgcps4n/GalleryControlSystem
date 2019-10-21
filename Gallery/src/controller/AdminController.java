@@ -88,6 +88,8 @@ public class AdminController {
 			}
 			new Dialog(pane, stage, "Амжилттай.", "Компани амжилттай бүртгэгдлээ.", 650, 250);
 			comps.add(company);
+			System.out.println(company.getID());
+			System.out.println(company.getName());
 			table.refresh();
 			clear();
 		}

@@ -2,6 +2,7 @@ package model;
 
 import java.util.UUID;
 
+import data.DataBaseSelector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,6 +15,14 @@ public class Employee implements User {
 	
 	Employee(String lName, String fName, int phone, String username, String password) {
 		ID = UUID.randomUUID().toString();
+		name = new Name(lName, fName);
+		auth = new Auth(username, password, this);
+		this.phone = phone;
+		images = FXCollections.observableArrayList();
+	}
+	
+	Employee(String ID, String lName, String fName, int phone, String username, String password) {
+		this.ID = ID;
 		name = new Name(lName, fName);
 		auth = new Auth(username, password, this);
 		this.phone = phone;
@@ -46,6 +55,7 @@ public class Employee implements User {
 		return images;
 	}
 	public void addImage(Image image) {
+//		DataBaseSelector.SelectDB().createImage(this, image);
 		images.add(image);
 	}
 	public void deleteImage(Image image) {

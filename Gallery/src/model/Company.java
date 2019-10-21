@@ -2,6 +2,8 @@ package model;
 
 import java.util.UUID;
 
+import data.DataBaseSelector;
+import data.MySQL;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -13,6 +15,16 @@ public class Company implements User {
 	
 	public Company(String name, String about, String address, int phone, String username, String password) {
 		ID = UUID.randomUUID().toString();
+		this.name = name;
+		this.about = about;
+		this.address = address;
+		this.auth = new Auth(username, password, this);
+		this.phone = phone;
+		this.employees = FXCollections.observableArrayList();
+	}
+	
+	public Company(String ID, String name, String about, String address, int phone, String username, String password) {
+		this.ID = ID;
 		this.name = name;
 		this.about = about;
 		this.address = address;
@@ -56,6 +68,7 @@ public class Company implements User {
 	}
 	public void addEmployee(Employee employee) {
 		employees.add(employee);
+//		((MySQL) DataBaseSelector.SelectDB()).createEmployee(this, employee);
 	}
 	public void deleteEmployee(Employee employee) {
 		employees.remove(employee);

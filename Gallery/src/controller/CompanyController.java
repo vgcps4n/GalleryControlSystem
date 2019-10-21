@@ -91,6 +91,7 @@ public class CompanyController {
 			new Dialog(pane, stage, "Амжилттай.", "Ажилтан амжилттай бүртгэгдлээ.", 400, 280);
 			company.addEmployee((Employee) employee);
 			names.add(((Employee) employee).getName());
+			System.out.println(((Employee) employee).getID());
 			table.refresh();
 			clear();
 		}

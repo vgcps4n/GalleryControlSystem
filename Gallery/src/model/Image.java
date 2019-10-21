@@ -22,6 +22,23 @@ public class Image {
 		liked = 0;
 		bought = 0;
 	}
+	
+	Image(String ID, String name, String author, String info, 
+			int price, String draw, String type, 
+			int year, int count, String path) {
+		this.ID = ID;
+		this.name = name;
+		this.author = author;
+		this.info = info;
+		this.price = price;
+		this.draw = draw;
+		this.type = type;
+		this.year = year;
+		this.count = count;
+		this.path = path;
+		liked = 0;
+		bought = 0;
+	}
 
 	public String getID() {
 		return ID;

@@ -22,6 +22,16 @@ public class Member implements User {
 		bag = FXCollections.observableArrayList();
 	}
 	
+	Member(String ID, String lName, String fName, String username, String password, int phone, String address) {
+		this.ID = ID;
+		name = new Name(lName, fName);
+		auth = new Auth(username, password, this);
+		this.phone = phone;
+		this.address = address;
+		liked = FXCollections.observableArrayList();
+		bag = FXCollections.observableArrayList();
+	}
+	
 	public String getID() {
 		return ID;
 	}
@@ -40,6 +50,14 @@ public class Member implements User {
 	
 	public Name getName() {
 		return name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public void addLiked(Image image) {
