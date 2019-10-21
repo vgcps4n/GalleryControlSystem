@@ -18,6 +18,7 @@ import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Employee;
+import model.EmployeeContainer;
 import model.Image;
 import model.ImageContainer;
 import model.User;
@@ -36,6 +37,7 @@ public class EmployeeController {
 	private Stage stage;
     private Scene root;
     private Employee employee;
+    private EmployeeContainer employees;
     private ImageContainer images;
     private FileChooser fc;
     private File file;
@@ -66,6 +68,7 @@ public class EmployeeController {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         fc = new FileChooser();
         images = new ImageContainer();
+        employees = new EmployeeContainer();
 	}
 	
 	@FXML
@@ -116,7 +119,7 @@ public class EmployeeController {
 			if(image == null)
 				new Dialog(pane, stage, "Зураг бүртгэгдсэн байна.", "Өөр зураг оруулна уу.", 560, 290);
 			ImageIO.write(bi, "jpg", new File(path + "/" + file.getName()));
-			employee.addImage(image);
+			employees.addImage(employee, image);
 			new Dialog(pane, stage, "Амжилттай.", "Зураг амжилттай бүртгэгдлээ.", 560, 290);
 			table.refresh();
 			clear();

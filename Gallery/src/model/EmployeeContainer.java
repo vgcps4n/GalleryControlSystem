@@ -34,4 +34,9 @@ public class EmployeeContainer extends Container {
 		}
 		return null;
 	}
+	
+	public void addImage(Employee employee, Image image) {
+		employee.addImage(image);
+		db.createImage(employee, image);
+	}
 }

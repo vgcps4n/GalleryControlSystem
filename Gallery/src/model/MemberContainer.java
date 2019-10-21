@@ -10,6 +10,7 @@ public class MemberContainer extends Container {
 		Member member = new Member(lName, fName, username, password, phone, address);
 		auths.create(member.getAuth());
 		users.add(member);
+		db.createUser(member);
 		return member;
 	}
 	
@@ -33,6 +34,16 @@ public class MemberContainer extends Container {
 					return (Member) member;
 		}
 		return null;
+	}
+	
+	public void addLiked(Member member, Image image) {
+		member.addLiked(image);
+		db.like(member, image);
+	}
+	
+	public void deleteLiked(Member member, Image image) {
+		member.deleteLiked(image);
+		db.unlike(member, image);
 	}
 	
 }

@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import model.Image;
 import model.Member;
+import model.MemberContainer;
 
 public class ImageController {
 	@FXML private Label name, author, price, draw, year, type, info, bought, liked, count;
@@ -19,6 +20,7 @@ public class ImageController {
 	private Stage dialogStage;
 	private Image image;
 	private Member member;
+	private MemberContainer members;
 	private File file;
 
 	public Stage getDialogStage() {
@@ -73,16 +75,17 @@ public class ImageController {
 	
 	@FXML
 	void initialize() {
+		members = new MemberContainer();
 	}
 
 	@FXML
 	void Like() {
 		if(member.findLiked(image)) {
-			member.deleteLiked(image);
+			members.deleteLiked(member, image);
 			image.decLiked();
 			like.setText("Таалагдлаа");
 		} else {
-			member.addLiked(image);
+			members.addLiked(member, image);
 			image.incLiked();
 			like.setText("Таалагдсангүй");
 		}

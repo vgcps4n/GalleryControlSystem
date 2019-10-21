@@ -44,7 +44,7 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
             </Label>
-            <JFXButton fx:id="order" buttonType="RAISED" disable="true" prefHeight="25.0" prefWidth="73.0" text="Захиалах">
+            <JFXButton fx:id="order" buttonType="RAISED" disable="true" onAction="#Order" prefHeight="25.0" prefWidth="73.0" text="Захиалах">
                <HBox.margin>
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
@@ -80,8 +80,8 @@
                 <TableColumn fx:id="colName" prefWidth="100.0" text="Нэр" />
                 <TableColumn fx:id="colAuthor" prefWidth="94.0" text="Зураач" />
                   <TableColumn fx:id="colPrice" prefWidth="104.0" text="Үнэ" />
-                  <TableColumn fx:id="colInfo" prefWidth="171.0" text="Тайлбар" />
-                  <TableColumn fx:id="colLiked" prefWidth="26.0" text="&lt;3" />
+                  <TableColumn fx:id="colInfo" prefWidth="156.0" text="Тайлбар" />
+                  <TableColumn fx:id="colLiked" prefWidth="41.0" text="&lt;3" />
               </columns>
             </TableView>
          </children>

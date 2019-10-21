@@ -2,7 +2,6 @@ package model;
 
 import java.util.UUID;
 
-import data.DataBaseSelector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -55,7 +54,6 @@ public class Employee implements User {
 		return images;
 	}
 	public void addImage(Image image) {
-//		DataBaseSelector.SelectDB().createImage(this, image);
 		images.add(image);
 	}
 	public void deleteImage(Image image) {

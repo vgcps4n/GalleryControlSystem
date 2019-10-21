@@ -13,6 +13,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.Company;
+import model.CompanyContainer;
 import model.Employee;
 import model.EmployeeContainer;
 import model.Name;
@@ -35,6 +36,7 @@ public class CompanyController {
 	private Stage stage;
 	private Scene root;
 	private Company company;
+	private CompanyContainer companies;
 	private ObservableList<Name> names = FXCollections.observableArrayList();
 
 	private EmployeeContainer employees;
@@ -56,7 +58,7 @@ public class CompanyController {
 		for(Employee employee: this.company.getEmployees()) 
 			names.add(employee.getName());
 		table.setItems(names);
-		name.setText(this.company.getName() + " Компани");
+		name.setText(this.company.getName() + " Галлерей");
 	}
 	
 	@FXML
@@ -64,6 +66,7 @@ public class CompanyController {
         colF.setCellValueFactory(new PropertyValueFactory<>("first"));
         colL.setCellValueFactory(new PropertyValueFactory<>("last"));
         employees = new EmployeeContainer();
+        companies = new CompanyContainer();
 	}
 	
 	@FXML
@@ -89,9 +92,9 @@ public class CompanyController {
 				return;
 			}
 			new Dialog(pane, stage, "Амжилттай.", "Ажилтан амжилттай бүртгэгдлээ.", 400, 280);
-			company.addEmployee((Employee) employee);
+			
+			companies.addEmployee(company, (Employee) employee);
 			names.add(((Employee) employee).getName());
-			System.out.println(((Employee) employee).getID());
 			table.refresh();
 			clear();
 		}

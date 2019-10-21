@@ -1,10 +1,14 @@
 package model;
 
+import data.DataBase;
+import data.DataBaseSelector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class ImageContainer {
 	private static final ObservableList<Image> images = FXCollections.observableArrayList();
+	
+	private DataBase db = DataBaseSelector.SelectDB();
 	
 	public Image createImage(String name, String author, String info, 
 			int price, String draw, String type, 

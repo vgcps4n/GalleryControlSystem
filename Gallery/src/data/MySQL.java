@@ -97,9 +97,27 @@ public class MySQL implements DataBase {
 					+ image.getCount() + ", "
 					+ "\"" + image.getPath() + "\");");
 			
-			st.executeUpdate("insert into img_emp("
+			st.executeUpdate("insert into img_emp value("
 					+ "\"" + employee.getID() + "\", \"" + image.getID() + "\");");
 		} catch(SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Override
+	public void like(Member member, Image image) {
+		try {
+			st.executeUpdate("insert into liked value(\"" + member.getID() + "\", \"" + image.getID() + "\");");
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Override
+	public void unlike(Member member, Image image) {
+		try {
+			st.executeUpdate("delete from liked where memberID = \"" + member.getID() + "\" and imageID = \"" + image.getID() + "\";");
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 	}
@@ -131,8 +149,9 @@ public class MySQL implements DataBase {
 			rs = st.executeQuery(Queries.SELECT_EMP_COMP);
 			while(rs.next())
 				if(CompanyContainer.getUser(rs.getString("companyID")) != null && 
-						EmployeeContainer.getUser(rs.getString("employeeID")) != null)
+						EmployeeContainer.getUser(rs.getString("employeeID")) != null) {
 					CompanyContainer.getUser(rs.getString("companyID")).addEmployee(EmployeeContainer.getUser(rs.getString("employeeID")));
+				}
 			
 			rs = st.executeQuery(Queries.SELECT_IMG_EMP);
 			while(rs.next())
@@ -143,8 +162,10 @@ public class MySQL implements DataBase {
 			rs = st.executeQuery(Queries.SELECT_LIKED);
 			while(rs.next())
 				if(MemberContainer.getUser(rs.getString("memberID")) != null &&
-							ImageContainer.getImage(rs.getString("imageID")) != null)
+							ImageContainer.getImage(rs.getString("imageID")) != null) {
 					MemberContainer.getUser(rs.getString("memberID")).addLiked(ImageContainer.getImage(rs.getString("imageID")));
+					ImageContainer.getImage(rs.getString("imageID")).incLiked();
+				}
 			
 		}catch(SQLException e) {
 			e.printStackTrace();

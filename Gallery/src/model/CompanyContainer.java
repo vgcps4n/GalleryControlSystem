@@ -10,7 +10,7 @@ public class CompanyContainer extends Container {
 		Company company = new Company(name, about, address, phone, username, password);
 		auths.create(company.getAuth());
 		users.add(company);
-//		db.createUser(company);
+		db.createUser(company);
 		return company;
 	}
 	
@@ -36,4 +36,8 @@ public class CompanyContainer extends Container {
 		return null;
 	}
 
+	public void addEmployee(Company company, Employee employee) {
+		company.addEmployee(employee);
+		db.createEmployee(company, employee);
+	}
 }

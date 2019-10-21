@@ -81,7 +81,7 @@ public class MainController {
         	row.setOnMouseClicked(event -> {
         		if(event.getClickCount() == 2 && !row.isEmpty()) {
         			if(!isLogged) {
-                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 500, 400);
+                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 600, 400);
                 		return;
                 	}
         			OpenImageWindow(row.getItem());
@@ -95,7 +95,7 @@ public class MainController {
         	row.setOnMouseClicked(event -> {
         		if(event.getClickCount() == 2 && !row.isEmpty()) {
         			if(!isLogged) {
-                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 500, 400);
+                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 600, 400);
                 		return;
                 	}
         			OpenImageWindow(row.getItem());
@@ -154,6 +154,15 @@ public class MainController {
     }
     
     @FXML
+    void Order() {
+    	if(((Member) user).getBag().isEmpty()) {
+    		new Dialog(pane, Stage, "Захиалах боломжгүй.", "Сагс хоосон байна.", 600, 400);
+    		return;
+    	}
+    	OpenOrderWindow((Member) user);
+    }
+    
+    @FXML
     void Exit() {
     	System.out.println("bye.");
     	Stage.close();
@@ -204,9 +213,7 @@ public class MainController {
             
             loginWindow.showAndWait();
             
-            if(controller.getAuth() == null) {
-        		System.out.println("Login canceled.");
-            } else {
+            if(controller.getAuth() != null) {
             	user = controller.getAuth().getUser();
 	        	if(user instanceof Member) {
 	            	isLogged = true;
@@ -279,6 +286,32 @@ public class MainController {
             controller.setEmployee(employee);
             Stage.setTitle("Ажилтан");
     	    Stage.setScene(employeeWindow);
+    	}catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    }
+    
+    private void OpenOrderWindow(Member member) {
+    	try {
+    		FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("/view/Order.fxml"));
+            BorderPane order = (BorderPane) loader.load();
+
+            Stage orderWindow = new Stage();
+            orderWindow.initModality(Modality.WINDOW_MODAL);
+            orderWindow.initOwner(Stage);
+            Scene scene = new Scene(order);
+            orderWindow.setScene(scene);
+            
+            OrderController controller = loader.getController();
+            orderWindow.setTitle("Захиалах");
+            controller.setDialogStage(orderWindow);
+            controller.setMember(member);
+            
+            orderWindow.showAndWait();
+            
+            if(controller.isConfirmed())
+        		new Dialog(pane, Stage, "Захиалага амжилттай.", "Танд баяр хүргэе!", 600, 400);
     	}catch(IOException e) {
     		e.printStackTrace();
     	}
