@@ -53,6 +53,11 @@ public class Employee implements User {
 	public ObservableList<Image> getImages() {
 		return images;
 	}
+	public boolean findImage(Image image) {
+		if(images.contains(image))
+			return true;
+		return false;
+	}
 	public void addImage(Image image) {
 		images.add(image);
 	}

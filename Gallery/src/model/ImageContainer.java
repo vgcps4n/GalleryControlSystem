@@ -1,6 +1,5 @@
 package model;
 
-import data.DataBase;
 import data.DataBaseSelector;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,14 +7,15 @@ import javafx.collections.ObservableList;
 public class ImageContainer {
 	private static final ObservableList<Image> images = FXCollections.observableArrayList();
 	
-	private DataBase db = DataBaseSelector.SelectDB();
+	public ImageContainer() {
+		DataBaseSelector.SelectDB();
+	}
 	
 	public Image createImage(String name, String author, String info, 
-			int price, String draw, String type, 
-			int year, int count, String path) {
+			int price, String draw, String type, int year, String path) {
 		
 		Image image = new Image(name, author, info, price, 
-				draw, type, year, count, path);
+				draw, type, year, path);
 		if(images.contains(image))
 			return null;
 		images.add(image);
@@ -23,11 +23,10 @@ public class ImageContainer {
 	}
 	
 	public static void createImage(String ID, String name, String author, String info, 
-			int price, String draw, String type, 
-			int year, int count, String path) {
+			int price, String draw, String type, int year, String path) {
 		
 		Image image = new Image(ID, name, author, info, price, 
-				draw, type, year, count, path);
+				draw, type, year, path);
 		if(images.contains(image))
 			return;
 		images.add(image);

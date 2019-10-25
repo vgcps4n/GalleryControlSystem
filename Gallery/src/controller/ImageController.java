@@ -13,7 +13,7 @@ import model.Member;
 import model.MemberContainer;
 
 public class ImageController {
-	@FXML private Label name, author, price, draw, year, type, info, bought, liked, count;
+	@FXML private Label name, author, price, draw, year, type, info, liked;
 	@FXML private ImageView ivImage;
 	@FXML private JFXButton like, bag;
 	
@@ -65,8 +65,6 @@ public class ImageController {
 		info.setText(image.getInfo());
 		price.setText(Integer.toString(image.getPrice()));
 		year.setText(Integer.toString(image.getYear()));
-		count.setText(Integer.toString(image.getCount()));
-		bought.setText(Integer.toString(image.getBought()));
 		liked.setText(Integer.toString(image.getLiked()));
 		
 		file = new File(image.getPath());

@@ -17,6 +17,8 @@ import model.CompanyContainer;
 import model.Employee;
 import model.EmployeeContainer;
 import model.Name;
+import model.Order;
+import model.OrderContainer;
 import model.User;
 import view.Dialog;
 
@@ -25,6 +27,8 @@ public class CompanyController {
 	@FXML private TableView<Name> table;
 	@FXML private TableColumn<Name, String> colL;
 	@FXML private TableColumn<Name, String> colF;
+	@FXML private TableView<Order> order;
+	@FXML private TableColumn<Order, String> colUser, colImg, colEmp;
 	@FXML private Label name;
 	@FXML private TextField fName;
 	@FXML private TextField lName;
@@ -37,6 +41,7 @@ public class CompanyController {
 	private Scene root;
 	private Company company;
 	private CompanyContainer companies;
+	private OrderContainer orders;
 	private ObservableList<Name> names = FXCollections.observableArrayList();
 
 	private EmployeeContainer employees;
@@ -55,9 +60,10 @@ public class CompanyController {
 	
 	public void setCompany(User company) {
 		this.company = (Company) company;
-		for(Employee employee: this.company.getEmployees()) 
+		for(Employee employee: this.company.getEmployees())
 			names.add(employee.getName());
 		table.setItems(names);
+		order.setItems(orders.getFilteredOrders(this.company));
 		name.setText(this.company.getName() + " Галлерей");
 	}
 	
@@ -65,8 +71,12 @@ public class CompanyController {
 	void initialize() {
         colF.setCellValueFactory(new PropertyValueFactory<>("first"));
         colL.setCellValueFactory(new PropertyValueFactory<>("last"));
+        colUser.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colEmp.setCellValueFactory(new PropertyValueFactory<>("ename"));
+        colImg.setCellValueFactory(new PropertyValueFactory<>("iname"));
         employees = new EmployeeContainer();
         companies = new CompanyContainer();
+        orders = new OrderContainer();
 	}
 	
 	@FXML

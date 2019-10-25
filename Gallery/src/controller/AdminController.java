@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -59,6 +60,7 @@ public class AdminController {
     void initialize() {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
     	companies = new CompanyContainer();
+    	table.setPlaceholder(new Label("Хоосон."));
     	comps  = FXCollections.observableArrayList();
     }
     

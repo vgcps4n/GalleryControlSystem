@@ -64,6 +64,11 @@ public class Company implements User {
 	public ObservableList<Employee> getEmployees() {
 		return employees;
 	}
+	public boolean findEmployee(Employee employee) {
+		if(employees.contains(employee))
+			return true;
+		return false;
+	}
 	public void addEmployee(Employee employee) {
 		employees.add(employee);
 	}

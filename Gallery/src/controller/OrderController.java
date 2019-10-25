@@ -11,8 +11,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import model.EmployeeContainer;
 import model.Image;
+import model.ImageContainer;
 import model.Member;
+import model.OrderContainer;
 import view.Dialog;
 
 public class OrderController {
@@ -27,7 +30,11 @@ public class OrderController {
 	@FXML private JFXButton pay;
 	
 	private Stage dialogStage;
+	private OrderContainer orders;
+	private ImageContainer images;
+	private EmployeeContainer employees;
 	private Member member;
+	private Image image;
 	private int sum;
 	private boolean paid = false, confirmed = false;
 	
@@ -63,6 +70,9 @@ public class OrderController {
 	void initialize() {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        orders = new OrderContainer();
+        images = new ImageContainer();
+        employees = new EmployeeContainer();
         sum = 0;
 	}
 	
@@ -73,10 +83,18 @@ public class OrderController {
 			return;
 		}
 		confirmed = true;
+		
+		//order creation
+		for(int i=0; i<member.getBag().size(); i++) {
+			image = member.getBag().get(i);
+			orders.createOrder(username.getText().toString(), address.getText().toString(),
+					Integer.parseInt(phone.getText().toString()),
+					member, employees.findImage(image), image);
+		}
+		//remove from image container
+		images.getImages().removeAll(member.getBag());
+		//clear bag
 		member.getBag().clear();
-		
-		//TO DO: order creation
-		
 		dialogStage.close();
 	}
 	

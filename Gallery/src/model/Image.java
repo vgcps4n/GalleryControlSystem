@@ -4,11 +4,11 @@ import java.util.UUID;
 
 public class Image {
 	String ID, name, author, path, info, type, draw;
-	int liked, bought, price, year, count;
+	int liked, price, year;
 	
 	Image(String name, String author, String info, 
 			int price, String draw, String type, 
-			int year, int count, String path) {
+			int year, String path) {
 		ID = UUID.randomUUID().toString();
 		this.name = name;
 		this.author = author;
@@ -17,15 +17,13 @@ public class Image {
 		this.draw = draw;
 		this.type = type;
 		this.year = year;
-		this.count = count;
 		this.path = path;
 		liked = 0;
-		bought = 0;
 	}
 	
 	Image(String ID, String name, String author, String info, 
 			int price, String draw, String type, 
-			int year, int count, String path) {
+			int year, String path) {
 		this.ID = ID;
 		this.name = name;
 		this.author = author;
@@ -34,10 +32,8 @@ public class Image {
 		this.draw = draw;
 		this.type = type;
 		this.year = year;
-		this.count = count;
 		this.path = path;
 		liked = 0;
-		bought = 0;
 	}
 
 	public String getID() {
@@ -111,15 +107,7 @@ public class Image {
 	public void setYear(int year) {
 		this.year = year;
 	}
-
-	public int getCount() {
-		return count;
-	}
-
-	public void setCount(int count) {
-		this.count = count;
-	}
-
+	
 	public int getLiked() {
 		return liked;
 	}
@@ -131,18 +119,4 @@ public class Image {
 	public void decLiked() {
 		liked--;
 	}
-	
-	public int getBought() {
-		return bought;
-	}
-
-	public void incBought() {
-		bought++;
-	}
-
-
-	public void decBought() {
-		bought--;
-	}
-
 }

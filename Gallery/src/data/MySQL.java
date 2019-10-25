@@ -94,13 +94,23 @@ public class MySQL implements DataBase {
 					+ "\"" + image.getDraw() + "\", "
 					+ "\"" + image.getType() + "\", "
 					+ image.getYear() + ", "
-					+ image.getCount() + ", "
 					+ "\"" + image.getPath() + "\");");
 			
 			st.executeUpdate("insert into img_emp value("
 					+ "\"" + employee.getID() + "\", \"" + image.getID() + "\");");
 		} catch(SQLException e) {
 			System.out.println(e.getMessage());
+		}
+	}
+	
+	@Override
+	public void deleteImage(Employee employee, Image image) {
+		try {
+			st.executeUpdate("delete from image where ID = \"" + image.getID() + "\";");
+			st.executeUpdate("delete from img_emp where employeeID = \"" + employee.getID() + 
+					"\" AND imageID = \"" + image.getID() + "\";");
+		} catch(SQLException e) {
+			System.out.print(e.getMessage());
 		}
 	}
 	
@@ -144,7 +154,7 @@ public class MySQL implements DataBase {
 			while(rs.next())
 				ImageContainer.createImage(rs.getString("ID"), rs.getString("name"), rs.getString("author"), 
 						rs.getString("info"), rs.getInt("price"), rs.getString("draw"), rs.getString("type"), 
-						rs.getInt("year"), rs.getInt("count"), rs.getString("path"));
+						rs.getInt("year"), rs.getString("path"));
 			
 			rs = st.executeQuery(Queries.SELECT_EMP_COMP);
 			while(rs.next())

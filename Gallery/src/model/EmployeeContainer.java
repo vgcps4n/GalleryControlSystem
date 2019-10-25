@@ -35,6 +35,15 @@ public class EmployeeContainer extends Container {
 		return null;
 	}
 	
+	public Employee findImage(Image image) {
+		for(User employee: users) {
+			if(employee instanceof Employee)
+				if(((Employee) employee).findImage(image))
+					return (Employee) employee;
+		}
+		return null;
+	}
+	
 	public void addImage(Employee employee, Image image) {
 		employee.addImage(image);
 		db.createImage(employee, image);

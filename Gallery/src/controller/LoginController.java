@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
@@ -39,6 +40,11 @@ public class LoginController {
         auths = new AuthContainer();
         admin = new Admin();
         auths.create(admin.getAuth());
+        
+        password.setOnKeyPressed(e -> {
+        	if(e.getCode() == KeyCode.ENTER)
+        		Login();
+        });
     }
     
 	@FXML

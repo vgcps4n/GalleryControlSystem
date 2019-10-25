@@ -32,19 +32,15 @@ import view.Dialog;
 public class MainController {
 	@FXML private BorderPane pane;
 	@FXML private TableView<Image> table;
-	@FXML private TableColumn<Image, String> colName;
-	@FXML private TableColumn<Image, String> colAuthor;
-	@FXML private TableColumn<Image, String> colInfo;
-	@FXML private TableColumn<Image, Integer> colPrice;
-	@FXML private TableColumn<Image, Integer> colLiked;
+	@FXML private TableColumn<Image, String> colName, colAuthor, colInfo, colType;
+	@FXML private TableColumn<Image, Integer> colPrice, colLiked;
 	
 	@FXML private TableView<Image> bag;
 	@FXML private TableColumn<Image, String> colBag;
 	
 	@FXML private TextField search;
 	@FXML private JFXToggleButton liked;
-	@FXML private JFXButton login;
-	@FXML private JFXButton order;
+	@FXML private JFXButton login, order;
 	@FXML private Label username;
 	
     private Stage Stage;
@@ -66,6 +62,7 @@ public class MainController {
         colName.setCellValueFactory(new PropertyValueFactory<>("name"));
         colAuthor.setCellValueFactory(new PropertyValueFactory<>("author"));
         colInfo.setCellValueFactory(new PropertyValueFactory<>("info"));
+        colType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colLiked.setCellValueFactory(new PropertyValueFactory<>("liked"));
 
@@ -81,7 +78,7 @@ public class MainController {
         	row.setOnMouseClicked(event -> {
         		if(event.getClickCount() == 2 && !row.isEmpty()) {
         			if(!isLogged) {
-                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 600, 400);
+                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 700, 400);
                 		return;
                 	}
         			OpenImageWindow(row.getItem());
@@ -95,7 +92,7 @@ public class MainController {
         	row.setOnMouseClicked(event -> {
         		if(event.getClickCount() == 2 && !row.isEmpty()) {
         			if(!isLogged) {
-                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 600, 400);
+                		new Dialog(pane, Stage, "Зураг үзэх боломжгүй.", "Та эхлээд нэвтэрнэ үү.", 700, 400);
                 		return;
                 	}
         			OpenImageWindow(row.getItem());
@@ -156,7 +153,7 @@ public class MainController {
     @FXML
     void Order() {
     	if(((Member) user).getBag().isEmpty()) {
-    		new Dialog(pane, Stage, "Захиалах боломжгүй.", "Сагс хоосон байна.", 600, 400);
+    		new Dialog(pane, Stage, "Захиалах боломжгүй.", "Сагс хоосон байна.", 700, 400);
     		return;
     	}
     	OpenOrderWindow((Member) user);
@@ -311,7 +308,7 @@ public class MainController {
             orderWindow.showAndWait();
             
             if(controller.isConfirmed())
-        		new Dialog(pane, Stage, "Захиалага амжилттай.", "Танд баяр хүргэе!", 600, 400);
+        		new Dialog(pane, Stage, "Захиалага амжилттай.", "Танд баяр хүргэе!", 700, 400);
     	}catch(IOException e) {
     		e.printStackTrace();
     	}
