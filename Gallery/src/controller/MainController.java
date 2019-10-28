@@ -3,10 +3,14 @@ package controller;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXToggleButton;
 
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,6 +22,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Admin;
@@ -161,8 +167,32 @@ public class MainController {
     
     @FXML
     void Exit() {
-    	System.out.println("bye.");
-    	Stage.close();
+    	JFXDialogLayout content = new JFXDialogLayout();
+	    content.setHeading(new Text("Гарах"));
+	    content.setBody(new Text("Та гарахдаа итгэлтэй байна уу?"));
+	    StackPane sp = new StackPane();
+	    sp.getChildren().add(pane);
+	    JFXDialog dialog = new JFXDialog(sp, content, JFXDialog.DialogTransition.CENTER);
+	    dialog.setMaxWidth(700);
+	    JFXButton yes = new JFXButton("Тийм");
+	    JFXButton no = new JFXButton("Санамсаргүй дарчлаа");
+	    no.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override
+	        public void handle(ActionEvent event) {
+	            dialog.close();
+	        }
+	    });
+	    yes.setOnAction(new EventHandler<ActionEvent>() {
+	        @Override
+	        public void handle(ActionEvent event) {
+	        	System.out.println("bye.");
+	        	Stage.close();
+	        }
+	    });
+	    content.setActions(yes, no);
+	    Scene scene = new Scene(sp, 700, 400);
+	    Stage.setScene(scene);
+	    dialog.show();
     }
     
     private void OpenImageWindow(Image image) {

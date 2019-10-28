@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXDialogLayout;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -18,7 +19,7 @@ public class Dialog {
 	    content.setHeading(new Text(head));
 	    content.setBody(new Text(body));
 	    StackPane sp = new StackPane();
-	    
+	    sp.getChildren().add(root);
 	    JFXDialog dialog = new JFXDialog(sp, content, JFXDialog.DialogTransition.CENTER);
 	    dialog.setMaxWidth(width);
 	    JFXButton button = new JFXButton("OK");
@@ -28,9 +29,12 @@ public class Dialog {
 	            dialog.close();
 	        }
 	    });
+	    button.setOnKeyPressed(e -> {
+        	if(e.getCode() == KeyCode.ENTER)
+        		dialog.close();
+        });
 	    content.setActions(button);
 	    Scene scene = new Scene(sp, width, height);
-	    sp.getChildren().add(root);
 	    stage.setScene(scene);
 	    dialog.show();
 	}
