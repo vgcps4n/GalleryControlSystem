@@ -17,6 +17,7 @@ public class DeliveryController {
 		dialogStage = stage;
 	}
 	
+	//sad
 	public void setOrder(Order order) {
 		this.order = order;
 		name.setText(order.getName());
