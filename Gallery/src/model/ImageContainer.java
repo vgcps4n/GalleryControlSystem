@@ -21,7 +21,7 @@ public class ImageContainer {
 		images.add(image);
 		return image;
 	}
-	
+
 	public static void createImage(String ID, String name, String author, String info, 
 			int price, String draw, String type, int year, String path) {
 		
@@ -31,6 +31,7 @@ public class ImageContainer {
 			return;
 		images.add(image);
 	}
+	
 	
 	public static Image getImage(String ID) {
 		for(Image image: images)

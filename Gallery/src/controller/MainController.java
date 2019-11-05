@@ -14,6 +14,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -43,7 +44,8 @@ public class MainController {
 	
 	@FXML private TableView<Image> bag;
 	@FXML private TableColumn<Image, String> colBag;
-	
+
+	@FXML private ChoiceBox<String> cbType;
 	@FXML private TextField search;
 	@FXML private JFXToggleButton liked;
 	@FXML private JFXButton login, order;
@@ -129,6 +131,8 @@ public class MainController {
         sorted.comparatorProperty().bind(table.comparatorProperty());
         table.setItems(sorted);
         
+        table.getOnDragDetected();
+        
         liked.selectedProperty().addListener(e -> {
         	if(isLogged) {
         		if(liked.isSelected())
@@ -137,6 +141,9 @@ public class MainController {
         			table.setItems(sorted);
         	}
         });
+        
+        cbType.getItems().addAll("Бусад", "Өвөл", "photo", "photograph");
+
     }
     
     @FXML

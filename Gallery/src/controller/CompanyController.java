@@ -1,16 +1,21 @@
 package controller;
 
+import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Company;
 import model.CompanyContainer;
@@ -77,6 +82,17 @@ public class CompanyController {
         employees = new EmployeeContainer();
         companies = new CompanyContainer();
         orders = new OrderContainer();
+        
+        order.setRowFactory(tv -> {
+        	TableRow<Order> row = new TableRow<>();
+        	row.setOnMouseClicked(event -> {
+        		if(event.getClickCount() == 2 && !row.isEmpty()) {
+        			OpenDeliveryWindow(row.getItem());
+        		}
+        	});
+            return row;
+        });
+        
 	}
 	
 	@FXML
@@ -124,4 +140,31 @@ public class CompanyController {
 		stage.setTitle("Gallery Control System");
 		stage.setScene(root);
 	}
+	
+	private void OpenDeliveryWindow(Order order) {
+    	try {
+        	FXMLLoader loader = new FXMLLoader();
+        	loader.setLocation(Main.class.getResource("/view/Delivery.fxml"));
+			BorderPane delivery = (BorderPane) loader.load();
+			
+			Stage deliveryWindow = new Stage();
+            deliveryWindow.initModality(Modality.WINDOW_MODAL);
+			deliveryWindow.initOwner(stage);
+			Scene scene = new Scene(delivery);
+			deliveryWindow.setScene(scene);
+			
+			DeliveryController controller = loader.getController();
+			deliveryWindow.setTitle("Хүргэлт");
+			controller.setDialogStage(deliveryWindow);
+			controller.setOrder(order);
+			
+			deliveryWindow.showAndWait();
+
+			this.order.setItems(orders.getFilteredOrders(company));
+		} catch (IOException e) {
+			System.out.println("sad");
+			e.printStackTrace();
+		}
+    	
+    }
 }

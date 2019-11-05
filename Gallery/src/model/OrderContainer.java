@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 
 public class OrderContainer {
 	private static final ObservableList<Order> orders = FXCollections.observableArrayList();
+	private static final ObservableList<Order> delivered = FXCollections.observableArrayList();
 	
 	public Order createOrder(String name, String address, int phone, Member member, Employee employee, Image image) {
 		Order order = new Order(name, address, phone, member, employee, image);
@@ -38,5 +39,14 @@ public class OrderContainer {
 	
 	public ObservableList<Order> getOrders() {
 		return orders;
+	}
+	
+	public void deliverOrder(Order order) {
+		delivered.add(order);
+		orders.remove(order);
+	}
+
+	public static ObservableList<Order> getDelivered() {
+		return delivered;
 	}
 }
