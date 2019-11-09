@@ -4,12 +4,18 @@ import java.io.IOException;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Admin;
@@ -18,7 +24,8 @@ import model.AuthContainer;
 import view.Dialog;
 
 public class LoginController {
-	@FXML private AnchorPane root;
+	@FXML private StackPane root;
+	@FXML private AnchorPane container;
 	@FXML private TextField username;
 	@FXML private PasswordField password;
 	
@@ -29,6 +36,9 @@ public class LoginController {
 
     public void setDialogStage(Stage dialogStage) {
         this.dialogStage = dialogStage;
+    	BackgroundFill white = new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY);
+    	Background bg = new Background(white);
+    	container.setBackground(bg);
     }
     
     public Stage getDialogStage() {

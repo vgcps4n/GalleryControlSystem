@@ -37,7 +37,8 @@ import model.User;
 import view.Dialog;
 
 public class MainController {
-	@FXML private BorderPane pane;
+	@FXML private StackPane pane;
+	@FXML private BorderPane container;
 	@FXML private TableView<Image> table;
 	@FXML private TableColumn<Image, String> colName, colAuthor, colInfo, colType;
 	@FXML private TableColumn<Image, Integer> colPrice, colLiked;
@@ -233,7 +234,7 @@ public class MainController {
     	try{
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("/view/Login.fxml"));
-            AnchorPane login = (AnchorPane) loader.load();
+            StackPane login = (StackPane) loader.load();
             
             Stage loginWindow = new Stage();
             loginWindow.initModality(Modality.WINDOW_MODAL);

@@ -5,96 +5,107 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="pane" prefHeight="400.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
-   <top>
-      <MenuBar BorderPane.alignment="CENTER">
-        <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-   </top>
-   <bottom>
-      <HBox BorderPane.alignment="CENTER_LEFT">
-         <children>
-            <Label fx:id="username" prefHeight="23.0" prefWidth="187.0">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </Label>
-            <JFXButton fx:id="order" buttonType="RAISED" disable="true" onAction="#Order" prefHeight="25.0" prefWidth="73.0" text="Захиалах">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </JFXButton>
-            <JFXButton fx:id="login" buttonType="RAISED" onAction="#Login" prefHeight="25.0" prefWidth="206.0" text="Нэвтрэх">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" onAction="#Exit" prefHeight="25.0" prefWidth="81.0" text="Гарах">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin>
-            </JFXButton>
-         </children>
-      </HBox>
-   </bottom>
-   <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0">
+
+<StackPane fx:id="pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+      <BorderPane fx:id="container" prefHeight="1243.0" prefWidth="1680.0" StackPane.alignment="CENTER_RIGHT">
+         <bottom>
+            <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <TextField fx:id="search" promptText="Хайх">
+                  <Label fx:id="username" alignment="CENTER" prefHeight="23.0" prefWidth="187.0">
                      <HBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
-                  </TextField>
-                  <ChoiceBox fx:id="cbType" prefWidth="150.0" />
-                  <JFXToggleButton fx:id="liked" maxHeight="58.0" prefHeight="58.0" prefWidth="340.0" text="Таалагдсан зураг" />
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="order" buttonType="RAISED" disable="true" onAction="#Order" prefHeight="37.0" prefWidth="134.0" text="Захиалах">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton fx:id="login" buttonType="RAISED" onAction="#Login" prefHeight="37.0" prefWidth="294.0" text="Нэвтрэх">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton buttonType="RAISED" onAction="#Exit" prefHeight="25.0" prefWidth="97.0" text="Гарах">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </JFXButton>
                </children>
             </HBox>
-            <TableView fx:id="table" prefHeight="293.0" prefWidth="500.0">
+         </bottom>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="500.0">
+                     <children>
+                        <TextField fx:id="search" promptText="Хайх">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                        <ChoiceBox fx:id="cbType" prefHeight="39.0" prefWidth="168.0" />
+                        <JFXToggleButton fx:id="liked" maxHeight="58.0" prefHeight="58.0" prefWidth="340.0" text="Таалагдсан зураг">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </JFXToggleButton>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" top="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TableView fx:id="table" prefHeight="1057.0" prefWidth="1468.0">
+                    <columns>
+                      <TableColumn fx:id="colName" prefWidth="98.0" text="Нэр" />
+                      <TableColumn fx:id="colAuthor" prefWidth="96.0" text="Зураач" />
+                        <TableColumn fx:id="colType" prefWidth="87.0" text="Төрөл" />
+                        <TableColumn fx:id="colPrice" text="Үнэ" />
+                        <TableColumn fx:id="colInfo" prefWidth="159.0" text="Тайлбар" />
+                        <TableColumn fx:id="colLiked" prefWidth="44.0" text="&lt;3" />
+                    </columns>
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </VBox.margin>
+                  </TableView>
+               </children>
+            </VBox>
+         </center>
+         <right>
+            <TableView fx:id="bag" disable="true" prefHeight="330.0" prefWidth="132.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="colName" prefWidth="98.0" text="Нэр" />
-                <TableColumn fx:id="colAuthor" prefWidth="96.0" text="Зураач" />
-                  <TableColumn fx:id="colType" prefWidth="87.0" text="Төрөл" />
-                  <TableColumn fx:id="colPrice" text="Үнэ" />
-                  <TableColumn fx:id="colInfo" prefWidth="159.0" text="Тайлбар" />
-                  <TableColumn fx:id="colLiked" prefWidth="44.0" text="&lt;3" />
+                <TableColumn fx:id="colBag" prefWidth="128.0" text="Сагс" />
               </columns>
+               <BorderPane.margin>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </BorderPane.margin>
             </TableView>
-         </children>
-      </VBox>
-   </center>
-   <right>
-      <TableView fx:id="bag" disable="true" prefHeight="330.0" prefWidth="132.0" BorderPane.alignment="CENTER">
-        <columns>
-          <TableColumn fx:id="colBag" prefWidth="128.0" text="Сагс" />
-        </columns>
-      </TableView>
-   </right>
-</BorderPane>
+         </right>
+      </BorderPane>
+   </children>
+</StackPane>
