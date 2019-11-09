@@ -14,14 +14,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <StackPane fx:id="pane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
    <children>
       <BorderPane fx:id="container" prefHeight="1243.0" prefWidth="1680.0" StackPane.alignment="CENTER_RIGHT">
          <bottom>
             <HBox alignment="CENTER_RIGHT" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <Label fx:id="username" alignment="CENTER" prefHeight="23.0" prefWidth="187.0">
+                  <Label fx:id="username" alignment="CENTER" prefHeight="25.0" prefWidth="1065.0" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </HBox.margin>
